@@ -61,17 +61,27 @@ An AI model does the reading; small programs check everything it says.
 
 ## Step by step
 
-Open the notebook in Colab (from the kit's page, or File › Open notebook ›
-GitHub). Each step is a box with a ▶ button. Run them in order. Your work is
+Open the notebook from the kit's page,
+[github.com/auyeunt/course-concept-graph](https://github.com/auyeunt/course-concept-graph)
+("Open the notebook in Google Colab"), signed in with your college Google
+account. Each step is a box with a ▶ button. Run them in order. Your work is
 saved in Google Drive, in My Drive › Concept graph › *your course*, so you can
 stop after any step and continue another day: run Step 1 again first, then
 carry on.
 
 ### Step 1: set up
 
-Type a short course name and press ▶. Colab asks for permission to use your
-Google Drive; allow it (this is how your work is saved). The step prints the
-folder it made.
+Type a short course name and press ▶. Two questions come up the first time:
+
+- "Warning: This notebook was not authored by Google." Colab says this about
+  every notebook that comes from GitHub. Choose **Run anyway**. (The code is
+  public in the kit's repository if you or your IT staff want to read it.)
+- Permission to use your Google Drive. Allow it: this is how your work is
+  saved between sessions.
+
+The step prints the folder it made. You do not need Colab's "Copy to Drive":
+your work is saved in the course folder, and the notebook itself is always
+opened fresh from the kit's page.
 
 ### Step 2: add your readings
 
