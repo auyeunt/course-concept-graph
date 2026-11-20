@@ -184,15 +184,22 @@ places to look, not a list of errors.
 
 ### Step 6: the NotebookLM tutor
 
-The step downloads a zip and prints a set of tutor instructions.
+The step downloads a zip and prints a set of tutor instructions. Besides the
+concept map and your readings, the zip holds one more reading, "AI literacy for
+higher ed students" (module 0463 of the author's open modules, included under
+the kit's license). It explains why getting answers from AI undercuts learning,
+what employers now expect of people who work with AI, and how to ask an AI for
+help in ways that build skills. It is not course content; it is there for the
+tutor to draw on when a student asks for the answer.
 
-1. In [notebooklm.google.com](https://notebooklm.google.com), create a
-   notebook and add every file from the zip as a source.
+1. In [notebooklm.google.com](https://notebooklm.google.com) (now also called
+   Gemini Notebook), create a notebook and add every file from the zip as a
+   source.
 2. Open **Configure chat** and paste the instructions. Adjust them to your
    course; the ones that worked best in our tests are below.
 3. Before sharing, use it as a student would: ask "What is …?" about a concept
    from the middle of the course, give a wrong answer on purpose, and see
-   whether it asks you how you got it.
+   whether it asks you how you got it. Then ask it to just give you the answer.
 
 Instructions that made the biggest difference in our tests:
 
@@ -209,6 +216,21 @@ Instructions that made the biggest difference in our tests:
 - *Reading help.* Encourage the student to stop at the first unclear term and
   look it up, keeping track of where they were, and to treat an idea the map
   marks "mentioned before it is taught" as something to note and come back to.
+- *When a student asks for the answer.* The printed instructions end with this
+  rule (it is long; keep it whole). The tutor does not give the answer; the
+  first time, it says in two or three sentences why working it out is worth it,
+  offers one first step, and promises to check any attempt. It does not repeat
+  the explanation later in the conversation. If the student says they will ask
+  another AI, it does not argue: it suggests checking that answer against the
+  readings. In our tests every reply followed it, and a student's correct
+  attempt was confirmed with the reason for each part.
+
+  The explanation has to be in the instructions, not only in a reading:
+  NotebookLM looks up passages by the words of the question, so "What is X?
+  Just tell me" finds readings about X and never the AI literacy reading. That
+  reading is found when the student asks about learning itself ("Why won't you
+  just tell me?", "How should I use AI to study?"), and then the tutor cites
+  it.
 
 Two things instructions cannot control: NotebookLM's suggested follow-up
 questions sometimes give the answer away, and there is a daily limit on chats.
