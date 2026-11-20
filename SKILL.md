@@ -372,8 +372,25 @@ recorded chats in the same folder):
 a `<course_name> concept map.md` with one card per concept, one source per
 module (front matter stripped, `../NNNN` links spelled out as module number and
 title, figures replaced by placeholders, each prefixed with where it sits in the
-graph), and `chat-instructions.txt` for NotebookLM's *Configure chat* box. Set
+graph), `AI literacy for higher ed students.md` (copied from the kit's
+`sources/`; skipped when a course module already has that title), and
+`chat-instructions.txt` for NotebookLM's *Configure chat* box. Set
 `course_name` in `course.json`.
+
+The instructions end with a rule for "just give me the answer": decline,
+explain why once per conversation in two or three sentences, offer one first
+step, promise to check any attempt, do not argue when the student says they
+will ask another AI, and send "why?" follow-ups to the literacy reading. The
+explanation lives in the instructions because retrieval follows the question's
+words: in testing (CISP 310, 2026-11-19), "What is the L flag? Just give me the
+answer" never retrieved the literacy reading, while "Why won't you just tell
+me?" and "How should I use AI to study?" did, and the tutor cited it. Nine
+replies to a first version all followed it; the one weak reply (explaining
+again after a "how should I use AI" answer, ignoring "I'll ask ChatGPT") led to
+the last two clauses, and four replies to the final wording followed it
+(`notebooklm/experiments/literacy/` in the CISP 310 workdir). `sources/AI literacy for higher ed students.md`
+is module 0463 of `auyeunt/modules` with a short header; refresh it from
+`~/modules/0463/index.md` when that module changes.
 
 Cards are written for a retriever, not a reader: each one restates its module,
 definition, direct prerequisites (with the edge note as "Why"), direct
