@@ -332,7 +332,8 @@ class Project:
         tmp = self.dir / "notebooklm-sources"
         shutil.rmtree(tmp, ignore_errors=True)
         tmp.mkdir()
-        for f in [*nb.glob("*concept map.md"), *(nb / "modules").glob("*.md")]:
+        for f in [*nb.glob("*concept map.md"), *nb.glob("AI literacy*.md"),
+                  *(nb / "modules").glob("*.md")]:
             shutil.copy(f, tmp / f.name)
         z = shutil.make_archive(str(tmp), "zip", tmp)
         shutil.rmtree(tmp)

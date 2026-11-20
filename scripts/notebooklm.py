@@ -10,6 +10,11 @@ there untouched:
                               restatements, and its full foundation by module
   modules/NNNN <title>.md     each clean/ module, front matter stripped, ../NNNN
                               links spelled out, prefixed with where it sits
+  AI literacy for higher ed students.md
+                              a reading (module 0463 of auyeunt/modules, copied
+                              from the kit's sources/) on why the tutor does
+                              not hand over answers and how to learn with AI;
+                              the instructions send "why?" questions to it
   chat-instructions.txt       text for NotebookLM's "Configure chat" box
 
 If graph/audit/forward.tsv exists (edge_audit.py forward), each forward
@@ -20,7 +25,7 @@ concept is taught later instead of stepping back through earlier concepts.
 Every card repeats names and module titles rather than relying on headings,
 because a retriever hands the model one chunk at a time, out of context.
 """
-import collections, csv, re, shutil, sys
+import collections, csv, pathlib, re, shutil, sys
 import courselib
 
 work, cfg = courselib.load()
@@ -374,11 +379,27 @@ for m in manifest:
                                              rewrite(body).lstrip())
     written.append(name)
 
+# ---- AI literacy reading
+# The tutor's answer to "why won't you just tell me?". In testing a topic
+# question never retrieved it and a question about learning or AI did, so the
+# instructions below carry the short explanation and send follow-ups here.
+LITERACY = "AI literacy for higher ed students"
+lit_src = pathlib.Path(__file__).resolve().parent.parent / "sources" / f"{LITERACY}.md"
+lit_files = []
+if any(LITERACY.lower() in n.lower() for n in written):
+    lit_note = "already one of the course's modules"
+elif lit_src.exists():
+    shutil.copy(lit_src, out_tmp / lit_src.name)
+    lit_files.append(lit_src.name)
+    lit_note = "written"
+else:
+    lit_note = f"missing from the kit ({lit_src}); add it to the notebook by hand"
+
 # ---- chat instructions
 (out_tmp / "chat-instructions.txt").write_text(f"""\
 You are a Socratic tutor for {course}. Help the student reach understanding by asking, not telling.
 
-The sources are the course modules (one per module) and the "{course} concept map". The map has one card per concept: its definition, what it "builds directly on", what it "leads directly to", and its full foundation.
+The sources are the course modules (one per module), the "{course} concept map", and "{LITERACY}", a reading about learning with AI. The map has one card per concept: its definition, what it "builds directly on", what it "leads directly to", and its full foundation.
 
 When the student asks about a concept:
 1. Find its card in the concept map. Ask one question at a time, starting with the most direct prerequisite listed under "builds directly on". Wait for the answer.
@@ -389,6 +410,8 @@ When the student asks about a concept:
 6. Concepts marked as prior knowledge are assumed from earlier courses: point the student to review them rather than teaching them in full. Modules described as not among the notebook's sources cannot be quoted.
 
 Refer to modules by number and title so the student can find the reading. Do not hand over complete answers to exercises; guide the student to them.
+
+When the student asks for the answer outright ("just tell me", "skip the explanation", "I don't need to learn this"), do not give it. If you have not yet explained why in this conversation, explain it in two or three sentences of your own: working out an answer is what makes it stick and shows the student what they actually know, and the method behind it (breaking a question into the concepts it builds on, checking each one, and verifying the result against the source) works in any course and in any job that asks them to learn something new. An answer they are handed is good for one question and leaves them nothing to use on an exam. Then offer one concrete first step, and say that as soon as they show an attempt, you will tell them whether it is right and why. Once you have explained why, whether the student asked or not, do not explain it again; just offer the next step. If the student says they will get the answer from another AI tool, do not argue: say it is their choice, suggest they check that answer against the course materials, and offer to go through their reasoning with them. If the student asks why at more length, or asks how to use AI to study, use the source "{LITERACY}" and cite it.
 """)
 
 # Replace only what this script generates; anything else in notebooklm/
@@ -408,6 +431,8 @@ cm = out / f"{course} concept map.md"
 print(f"{cm.relative_to(work)}: {len(C)} cards, depth {depth}, "
       f"{len(cm.read_text().split())} words")
 print(f"notebooklm/modules/: {len(written)} module sources")
+print(f"notebooklm/{LITERACY}.md: {lit_note}")
 print(f"notebooklm/chat-instructions.txt: "
       f"{len((out / 'chat-instructions.txt').read_text())} characters")
-print(f"{1 + len(written)} sources, {words} words in all")
+words += sum(len((out / f).read_text().split()) for f in lit_files)
+print(f"{1 + len(written) + len(lit_files)} sources, {words} words in all")
