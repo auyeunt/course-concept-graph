@@ -201,14 +201,18 @@ if alerts.exists():
 (MD, """## Step 6 · Sources for a NotebookLM tutor
 
 The next box makes a zip of sources: one concept map and one file per reading,
-each written so that NotebookLM can find how ideas connect. In
-[notebooklm.google.com](https://notebooklm.google.com):
+each written so that NotebookLM can find how ideas connect, plus a short reading,
+"AI literacy for higher ed students", that the tutor uses when a student asks
+why it will not just give the answer. In
+[notebooklm.google.com](https://notebooklm.google.com) (now also called Gemini
+Notebook):
 
 1. Create a notebook and add every file from the zip as a source.
 2. Open **Configure chat** and paste the tutor instructions printed below
    (or your own; see the faculty guide).
 3. Try it yourself as a student before sharing it: ask "What is …?" about a
-   concept from the middle of the course."""),
+   concept from the middle of the course, then ask it to just give you the
+   answer."""),
 
 (CODE, """#@title Step 6 · Make the NotebookLM sources { display-mode: "form" }
 from google.colab import files
